@@ -1,0 +1,165 @@
+<!-- PROPERLY FORMATTED, COMMENTED AND STRUCTURED BY THE CREATORS OF EDUSYNC -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartNotice Pro | AI Document Generator</title>
+
+    <link rel="stylesheet" href="newstyle.css">
+
+    <!-- html2pdf.js for PDF download -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <div class="theme-toggle">
+     <label for="theme-switch">Dark mode</label>
+     <label class="switch">
+    <input type="checkbox" id="theme-switch">
+    <span class="slider"></span>
+    </label>
+</div>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1> Notice Flow AI </h1>
+            <p>AI-Powered Official Document Generator for Educational Institutions</p>
+        </header>
+
+        <!-- INPUT FORM SECTION -->
+        <section class="form-section">
+            <div class="form-row">
+                <div class="input-group" style="flex: 2;">
+                    <label for="title">Document Title/Subject</label>
+                    <input type="text" id="title" placeholder="E.g., Diwali Vacation - College Closure">
+                </div>
+                <div class="input-group" style="flex: 1;">
+                    <label for="department">Issuing Department</label>
+                    <select id="department">
+                        <option value="COMPUTER ENGINEERING">Computer Engineering Dept.</option>
+                        <option value="ELECTRONICS & TELECOMMUNICATION">E&TC Dept.</option>
+                        <option value="APPLIED SCIENCES & HUMANITIES">Applied Sciences & Humanities</option>
+                        <option value="COLLEGE ADMINISTRATION" selected>College Administration (Default)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="summary">Core Context/Summary (Key facts for the AI)</label>
+                <textarea id="summary" rows="4" placeholder="E.g., The college will remain closed from 18th Oct to 26th Oct 2025. Normal activities will resume on 27th Oct 2025 (Monday)."></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="input-group" style="flex: 2;">
+                    <label for="signatories">Select Signatories (Ctrl/Cmd + Click for multiple)</label>
+                    <select id="signatories" multiple size="4" title="Hold Ctrl/Cmd to select multiple roles.">
+                        <option value="Principal">Principal (Essential for policy)</option>
+                        <option value="HOD">HOD, Computer Engineering Dept.</option>
+                        <option value="Exam_Coordinator">Exam Coordinator</option>
+                        <option value="Academic_Coordinator">Academic Coordinator</option>
+                    </select>
+                </div>
+
+                <!-- New Signatory Input Section -->
+                <div id="new-signatory-section" style="flex:1; margin-left:20px;">
+                    <h3>Add New Signatory</h3>
+                    <label for="new-signatory-name">Signatory Name</label>
+                    <input type="text" id="new-signatory-name" placeholder="Enter signatory's name">
+
+                    <label for="new-signature-upload">Upload Signature (image)</label>
+                    <input type="file" id="new-signature-upload" accept="image/*">
+
+                    <label>Or Draw Signature</label>
+                    <canvas id="signature-canvas" width="300" height="100" style="border:1px solid #000;"></canvas>
+                    <button id="clear-signature" type="button">Clear</button>
+                    
+                    <button id="add-signatory-btn" type="button" style="margin-top:10px;">Add Signatory</button>
+                </div>
+
+                <div class="input-group" style="flex: 1;">
+                    <label for="ref_number">Reference Number</label>
+                    <input type="text" id="ref_number" value="VPP/Trust-Office/2025-26/AUTO">
+
+                    <label class="mode-label" style="margin-top: 15px;">Document Type</label>
+                    <div class="toggle-container">
+                        <span id="templateLabel" style="width: auto;">Notice</span>
+                        <label class="switch">
+                            <input type="checkbox" id="templateToggle">
+                            <span class="slider"></span>
+                        </label>
+                        <!-- <span id="toggle-hint">Circular</span> -->
+                    </div>
+                </div>
+            </div>
+
+            <button class="generate-btn" onclick="generateNotice()"> Generate Document ↵ </button>
+        </section>
+
+        <!-- OUTPUT SECTION -->
+        <section id="output-section" class="hidden">
+            <div id="notice-template" class="notice">
+
+                <!-- 1. OFFICIAL LETTERHEAD -->
+                <div class="official-header resizable draggable" draggable="true" contenteditable="true" title="Click to edit/drag the header area" style="position:relative;">
+                    <button class="delete-btn" title="Delete this header">×</button>
+                    <img src="headerBanner.jpg" alt="VPPCOE Official Letterhead" class="full-banner-header">
+                </div>
+                <hr class="header-divider">
+
+                <!-- 2. REFERENCE AND DATE ROW -->
+                <div class="ref-date-row resizable draggable" draggable="true" contenteditable="true" title="Click to edit/drag Ref/Date row" style="position:relative;">
+                    <button class="delete-btn" title="Delete this ref/date row">×</button>
+                    <div class="ref-col">
+                        <p>Ref. No.: <span id="notice-ref-num"></span></p>
+                    </div>
+                    <div class="date-col">
+                        <p>Date: <span id="notice-date"></span></p>
+                    </div>
+                </div>
+                <br>
+
+                <!-- 3. NOTICE BODY -->
+                <div class="notice-body resizable draggable" draggable="true" contenteditable="true" title="Click to edit/drag notice body" style="position:relative;">
+                    <button class="delete-btn" title="Delete this notice body">×</button>
+                    <h3 id="notice-subject-header" contenteditable="true">NOTICE</h3>
+                    <p class="subject-line">Subject: <span id="notice-title" contenteditable="true"></span></p>
+                    <div id="notice-text" class="ai-content-editable" contenteditable="true" title="Click to manually edit the AI-generated content."></div>
+                </div>
+
+                <!-- 4. SIGNATURES AREA -->
+                <div class="signatures-area resizable draggable" id="signatures-area" draggable="true" style="position:relative;">
+                    <button class="delete-btn" title="Delete this signatures area">×</button>
+                    <!-- Signatures are inserted here by script.js -->
+                </div>
+
+                <!-- 5. FOOTER & COPY TO -->
+                <div class="official-footer resizable draggable" draggable="true" contenteditable="true" title="Click to edit/drag Copy To list" style="position:relative;">
+                    <button class="delete-btn" title="Delete this footer">×</button>
+                    <div class="copy-to">
+                        <p>Copy to:</p>
+                        <ol id="copy-to-list">
+                            <li>Trustee Office</li>
+                            <li>HODs/Deans</li>
+                            <li>Dean, Applied Arts</li>
+                            <li>Intranet/Internet (Website)</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BUTTONS -->
+            <div class="btn-row">
+                <button class="download-btn" onclick="downloadPDF()">📄 Download PDF</button>
+                <button class="edit-btn" onclick="editNotice()">✏️ Edit Input</button>
+            </div>
+        </section>
+
+        <footer>
+            <p> &copy; Notice Flow AI - Powered by EDUSYNC </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<!-- PROPERLY FORMATTED, COMMENTED AND STRUCTURED BY THE CREATORS OF EDUSYNC -->

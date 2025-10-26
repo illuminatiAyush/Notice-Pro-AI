@@ -1,0 +1,305 @@
+ /* PROPERLY FORMATTED, COMMENTED AND STRUCTURED BY THE CREATORS OF EDUSYNC */
+/* --- 0. Imports & Global Variables --- */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
+:root {
+    --primary-color: #0d47a1; /* Navy Blue */
+    --secondary-color: #1e88e5; /* Lighter Blue for highlights */
+    --text-color: #000; /* Adjusted to black for official documents */
+    --light-bg: #f5f7fa;
+    --border-color: #e0e0e0;
+    --shadow-light: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.app-container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    overflow: hidden;
+}
+
+/* --- 1. Top Header (Application Title) --- */
+header {
+    text-align: center;
+    padding: 30px 20px;
+    background: var(--primary-color);
+    color: white;
+}
+
+header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+}
+header p {
+    font-weight: 300;
+    font-size: 1rem;
+}
+
+/* --- 2. Input Form Section --- */
+.form-section {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+.input-group label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+    font-size: 0.95rem;
+}
+input[type="text"], textarea, select {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    font-size: 1rem;
+    transition: all 0.2s;
+    background-color: #fff;
+}
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.2);
+}
+textarea { resize: vertical; min-height: 100px; }
+.form-row { display: flex; gap: 20px; }
+.form-row > * { flex: 1; }
+
+/* Toggle Switch Styling (Kept as is) */
+.toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    padding: 10px 0;
+}
+.switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+    position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc; transition: 0.4s; border-radius: 34px;
+}
+.slider:before {
+    position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px;
+    background-color: white; transition: 0.4s; border-radius: 50%;
+}
+input:checked + .slider { background-color: var(--secondary-color); }
+input:checked + .slider:before { transform: translateX(26px); }
+
+/* Generate Button */
+.generate-btn {
+    background: var(--primary-color);
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: 0.3s;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.generate-btn:hover { 
+    background: var(--secondary-color); 
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+.generate-btn:disabled {
+    background: #90a4ae; 
+    cursor: not-allowed;
+}
+
+/* --- 3. Notice Output Section Styles (Document Theme) --- */
+.notice {
+    margin: 30px;
+    padding: 40px;
+    border: 1px solid #000;
+    background: #fff;
+    font-family: 'Times New Roman', serif; /* Official document font */
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    min-height: 400px;
+    padding-top: 20px;
+}
+
+/* 3.1. Official Header (Using full image banner) */
+.official-header {
+    display: block;
+    text-align: center;
+    padding: 0;
+    margin-bottom: 5px;
+}
+
+.official-header img.full-banner-header {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.header-divider {
+    border: 0;
+    height: 1px;
+    background-color: #000; /* Black divider */
+    margin: 15px 0 20px 0;
+}
+
+/* 3.2. Reference and Date Row */
+.ref-date-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+.ref-col { text-align: left; font-weight: 600; }
+.date-col { text-align: right; font-weight: 600; }
+
+/* 3.3. Notice Body Content */
+.notice-body {
+    margin-top: 10px; 
+    font-size: 1.15rem;
+    line-height: 1.8;
+}
+
+#notice-subject-header {
+    text-decoration: underline;
+    text-align: center;
+    margin: 20px 0 10px 0;
+    font-size: 1.3rem;
+    font-weight: 900; /* Very thick */
+    color: #000;
+    display: block;
+}
+
+.subject-line {
+    text-align: center;
+    font-weight: 700; /* Thick */
+    margin-bottom: 20px;
+}
+
+/* Fix 2: Remove yellow background and border for clean look */
+.ai-content-editable {
+    border: none;
+    padding: 0; 
+    background-color: transparent;
+    cursor: text;
+    line-height: 1.7;
+    text-indent: 40px; /* Standard paragraph indentation */
+    min-height: 150px;
+    text-align: justify; /* Official documents use justified text */
+}
+
+/* 3.4. Dynamic Signatures Area */
+.signatures-area {
+    margin-top: 60px;
+    padding-top: 10px;
+    display: flex;
+    /* FIX 1: Better spacing for up to 4 signatures */
+    justify-content: space-between; 
+    flex-wrap: wrap; 
+    gap: 30px; 
+}
+
+.signature-block {
+    /* FIX 1: Flexible basis to evenly space blocks */
+    flex: 1 1 200px; 
+    text-align: center;
+    padding: 0 10px;
+    font-size: 1rem;
+}
+
+.signature-name {
+    margin-top: 10px;
+    font-weight: 900; /* Very thick */
+    border-top: 1px solid #000;
+    display: inline-block;
+    padding-top: 5px;
+    min-width: 150px;
+}
+
+.signature-role {
+    font-size: 0.9rem;
+    color: #444;
+    font-weight: 600;
+}
+
+/* Single signature remains centered */
+.signatures-area.single-signature { justify-content: center; }
+.signatures-area.single-signature .signature-block { flex: 0 0 40%; }
+
+
+/* 3.5. Official Footer (Copy To) */
+.official-footer {
+    margin-top: 50px;
+    display: flex;
+    justify-content: flex-start;
+}
+.official-footer .copy-to {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    padding-left: 20px;
+}
+.official-footer .copy-to ol {
+    list-style-type: decimal;
+    padding-left: 20px;
+    margin-top: 5px;
+}
+
+/* --- 4. Utility & Editing Styles --- */
+.hidden { display: none; }
+.btn-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 0 40px 0;
+}
+
+/* NEW: Visual cue for editing (Applies to all contenteditable blocks) */
+[contenteditable="true"]:hover {
+    cursor: text;
+    border: 1px dashed var(--secondary-color) !important;
+}
+
+[contenteditable="true"]:focus {
+    outline: 2px solid rgba(30, 136, 229, 0.5); 
+    background-color: #fafafa;
+}
+
+/* Style for Draggable/Resizable Elements (Subtle zoom/shadow) */
+.official-header:hover,
+.ref-date-row:hover,
+.official-footer:hover,
+.signature-block:hover {
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    transform: scale(1.005);
+    transition: all 0.1s ease-out;
+}
+
+/* Responsive adjustments (Kept as is) */
+@media (max-width: 600px) {
+    /* ... responsive code ... */
+}
+
+/* Print Styles: Hide UI elements and clean up editable area for PDF (Kept as is) */
+@media print {
+    /* ... print code ... */
+}
+ /* PROPERLY FORMATTED, COMMENTED AND STRUCTURED BY THE CREATORS OF EDUSYNC */
