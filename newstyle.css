@@ -449,7 +449,7 @@ body[data-theme="dark"] .resizable:focus {
   right: 8px;
   font-weight: 900;
   font-size: 18px;
-  background: #ff4d4d;
+  background: #e61212;
   border: none;
   border-radius: 50%;
   color: white;
@@ -465,6 +465,644 @@ body[data-theme="dark"] .resizable:focus {
 }
 .signature-block, .official-header, .notice-body, .ref-date-row, .official-footer {
   position: relative; /* for delete button absolute positioning */
+}
+
+
+#new-signatory-section, .input-group details {
+  margin-bottom: 10px;
+}
+#signature-canvas {
+  margin-top: 10px;
+  display: block;
+  border-radius: 4px;
+  background: #fff;
+}
+#add-signatory-btn, #clear-signature {
+  margin-top: 8px;
+  margin-right: 10px;
+  background: #235bc9;
+  color: #fff;
+  border: none;
+  padding: 5px 18px;
+  border-radius: 5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#add-signatory-btn:hover, #clear-signature:hover {
+  background: #1b468e;
+}
+.signatory-preview-img {
+  max-width: 90px;
+  max-height: 35px;
+  display: block;
+  margin-top: 4px;
+  background: #f3f3f3;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+}
+.sign-upload-btn {
+  font-size: 11px;
+  margin-left: 7px;
+  cursor: pointer;
+  background: #fff685;
+  color: #235bc9;
+  border-radius: 3px;
+  border: 1px solid #e0e0e0;
+  padding: 0 8px 0 6px;
+}
+
+@media (max-width: 600px) {
+  #signature-canvas { width: 95vw; }
+  .signatory-preview-img { max-width: 60vw; }
+}
+
+
+/* Signatory and signature management styles */
+#signature-canvas {
+  margin-top: 10px;
+  display: block;
+  border-radius: 4px;
+  background: #fff;
+}
+#add-signatory-btn, #clear-signature {
+  margin-top: 8px;
+  margin-right: 10px;
+  background: #235bc9;
+  color: #fff;
+  border: none;
+  padding: 5px 18px;
+  border-radius: 5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#add-signatory-btn:hover, #clear-signature:hover {
+  background: #1b468e;
+}
+.signatory-preview-img {
+#signatory-previews {
+  margin-top: 16px;
+}
+
+#signatory-previews div {
+  display: flex;
+  align-items: center;
+  background: #f9faff;
+  margin-bottom: 9px;
+  padding: 7px 14px 7px 0;
+  border-radius: 6px;
+  box-shadow: 0 2px 7px rgba(50,91,233,0.03);
+}
+
+#signatory-previews span {
+  min-width: 160px;
+  font-size: 0.99em;
+  font-weight: 500;
+  color: var(--primary);
+  margin-right: 10px;
+}
+
+.sign-upload-btn {
+  font-size: 11px;
+  margin-left: 6px;
+  margin-right: 10px;
+  cursor: pointer;
+  background: #fef6af;
+  color: #235bc9;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+  padding: 3px 9px;
+}
+.sign-upload-btn::-webkit-file-upload-button {
+  font-size: 11px !important;
+  font-family: inherit;
+  background: #235bc9;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 3px 8px;
+  cursor: pointer;
+}
+.sign-upload-btn:hover,
+.sign-upload-btn:focus {
+  background: #fffabe;
+  color: #235bc9;
+}
+
+.signatory-preview-img {
+  max-width: 70px;
+  max-height: 32px;
+  margin-left: 10px;
+  border-radius: 4px;
+  background: #fcfcfd;
+  border: 1px solid #d7dde6;
+  box-shadow: 0 0 2px #bbb;
+  display: block;
+}
+} 
+.sign-upload-btn {
+  font-size: 11px;
+  margin-left: 7px;
+  cursor: pointer;
+  background: #fff685;
+  color: #235bc9;
+  border-radius: 3px;
+  border: 1px solid #e0e0e0;
+  padding: 0 8px 0 6px;
+}
+.delete-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-weight: 900;
+  font-size: 18px;
+  background: #ff4d4d;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  opacity: 0.8;
+}
+.delete-btn:hover {
+  opacity: 1;
+}
+.signature-block, .official-header, .notice-body, .ref-date-row, .official-footer {
+  position: relative;
+}
+.resizable {
+  resize: both;
+  overflow: auto;
+  min-width: 120px;
+  min-height: 40px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  #signatory-previews div {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 7px 7px 7px 7px;
+  }
+  .signatory-preview-img {
+    margin-left: 0;
+    margin-top: 6px;
+    max-width: 120px;
+  }
+}
+
+#signatory-previews {
+  margin-top: 0;
+  background: none;
+}
+
+.signatory-card {
+  display: flex;
+  align-items: center;
+  background: #f7fafd;
+  margin-bottom: 15px;
+  padding: 14px 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 18px rgba(50,91,233,0.07);
+  gap: 16px;
+  transition: box-shadow 0.2s;
+}
+.signatory-card:hover {
+  box-shadow: 0 4px 28px rgba(50,91,233,0.15);
+}
+.signatory-info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
+}
+.signatory-name {
+  min-width: 170px;
+  font-weight: 600;
+  color: var(--primary);
+  margin-right: 6px;
+  font-size: 1.08em;
+}
+.sign-upload-label {
+  position: relative;
+  cursor: pointer;
+}
+.sign-upload-input {
+  display: none;
+}
+.sign-upload-btn {
+  background: #f2f7ff;
+  border: 1px solid #e0e9f7;
+  color: #1b3483;
+  border-radius: 6px;
+  padding: 7px 17px 6px 17px;
+  font-size: 0.97em;
+  font-weight: 500;
+  transition: background 0.2s, border 0.2s;
+  margin-left: 3px;
+  cursor: pointer;
+  display: inline-block;
+}
+.sign-upload-btn:hover {
+  background: #e6eeff;
+  border: 1px solid #b7cdf6;
+}
+.signatory-preview-img {
+  height: 38px;
+  border-radius: 6px;
+  margin-left: 8px;
+  border: 1px solid #dde6fa;
+  box-shadow: 0 1px 4px #eee;
+  background: #fff;
+  display: inline-block;
+  object-fit: contain;
+  max-width: 130px;
+}
+
+/* For mobile */
+@media (max-width: 600px) {
+  .signatory-card, .signatory-info { flex-direction: column; align-items: flex-start; gap: 7px;}
+  .sign-upload-btn { margin-left: 0; margin-top: 4px;}
+}
+
+.signatory-picker-card {
+  border-radius: 14px;
+  background: #f2f6fe;
+  box-shadow: 0 1px 10px #235bc911;
+  padding: 20px 18px 16px 18px;
+  margin-bottom: 18px;
+  max-width: 99vw;
+  position: relative;
+}
+.signatory-card-title {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1.13em;
+  margin-bottom: 15px;
+  display: block;
+}
+#signatory-table {
+  max-height: 238px;
+  overflow-y: auto;
+  margin-bottom: 5px;
+}
+.signatory-row {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  background: #f7fafd;
+  border-radius: 7px;
+  margin-bottom: 10px;
+  padding: 7px 11px 7px 4px;
+  position: relative;
+}
+.signatory-checkbox {
+  width: 20px; height: 20px;
+  margin-right: 5px;
+}
+.signatory-name {
+  min-width: 140px;
+  font-weight: 600;
+  color: #234;
+  font-size: 1.07em;
+}
+.sign-upload-label {
+  position: relative;
+  cursor: pointer;
+}
+.sign-upload-input {
+  display: none;
+}
+.sign-upload-btn {
+  background: #f2f7ff;
+  border: 1px solid #e0e9f7;
+  color: #1b3483;
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-size: 0.97em;
+  font-weight: 500;
+  transition: background 0.2s, border 0.2s;
+  margin-left: 1px;
+  cursor: pointer;
+  display: inline-block;
+  outline: none;
+}
+.sign-upload-btn:hover {
+  background: #e6eeff;
+  border: 1px solid #b7cdf6;
+}
+.signatory-preview-img {
+  height: 30px;
+  max-width: 70px;
+  border-radius: 5px;
+  margin-left: 5px;
+  border: 1px solid #dde6fa;
+  box-shadow: 0 1px 4px #eee;
+  object-fit: contain;
+  background: #fff;
+  display: inline-block;
+}
+.delete-signatory-btn {
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 700;
+  width: 28px; height: 28px;
+  cursor: pointer;
+  margin-left: 10px;
+  line-height: 1;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.delete-signatory-btn:hover {
+  background: #b91c1c;
+}
+#add-signatory-toggle, #add-signatory-btn {
+  background: #235bc9;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  margin-top: 12px;
+  padding: 6px 16px;
+  font-size: 0.98em;
+  transition: background 0.18s;
+  cursor: pointer;
+}
+#add-signatory-toggle:hover, #add-signatory-btn:hover {
+  background: #153273;
+}
+#new-signatory-panel input[type=text] {
+  padding: 6px 12px;
+  border: 1.2px solid #c5cbe3;
+  border-radius: 4px;
+  margin-right: 10px;
+  margin-bottom: 6px;
+}
+#new-signatory-panel input[type=file] {
+  margin-bottom: 6px;
+}
+@media (max-width: 650px) {
+  .signatory-row {flex-direction: column; align-items:flex-start;}
+  .signatory-name {margin-bottom: 4px;}
+}
+
+
+.signatory-picker-card {
+  border-radius: 14px;
+  background: #f2f6fe;
+  box-shadow: 0 1px 10px #235bc911;
+  padding: 20px 18px 16px 18px;
+  margin-bottom: 18px;
+  max-width: 99vw;
+  position: relative;
+}
+.signatory-card-title {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1.13em;
+  margin-bottom: 15px;
+  display: block;
+}
+#signatory-table {
+  max-height: 238px;
+  overflow-y: auto;
+  margin-bottom: 5px;
+}
+.signatory-row {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  background: #f7fafd;
+  border-radius: 7px;
+  margin-bottom: 10px;
+  padding: 7px 11px 7px 4px;
+  position: relative;
+}
+.signatory-checkbox {
+  width: 20px; height: 20px;
+  margin-right: 5px;
+}
+.signatory-name {
+  min-width: 140px;
+  font-weight: 600;
+  color: #234;
+  font-size: 1.07em;
+}
+.sign-upload-label {
+  position: relative;
+  cursor: pointer;
+}
+.sign-upload-input {
+  display: none;
+}
+.sign-upload-btn {
+  background: #f2f7ff;
+  border: 1px solid #e0e9f7;
+  color: #1b3483;
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-size: 0.97em;
+  font-weight: 500;
+  transition: background 0.2s, border 0.2s;
+  margin-left: 1px;
+  cursor: pointer;
+  display: inline-block;
+  outline: none;
+}
+.sign-upload-btn:hover {
+  background: #e6eeff;
+  border: 1px solid #b7cdf6;
+}
+.signatory-preview-img {
+  height: 30px;
+  max-width: 70px;
+  border-radius: 5px;
+  margin-left: 5px;
+  border: 1px solid #dde6fa;
+  box-shadow: 0 1px 4px #eee;
+  object-fit: contain;
+  background: #fff;
+  display: inline-block;
+}
+.delete-signatory-btn {
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 700;
+  width: 28px; height: 28px;
+  cursor: pointer;
+  margin-left: 10px;
+  line-height: 1;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.delete-signatory-btn:hover {
+  background: #b91c1c;
+}
+#add-signatory-toggle, #add-signatory-btn {
+  background: #235bc9;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  margin-top: 12px;
+  padding: 6px 16px;
+  font-size: 0.98em;
+  transition: background 0.18s;
+  cursor: pointer;
+}
+#add-signatory-toggle:hover, #add-signatory-btn:hover {
+  background: #153273;
+}
+#new-signatory-panel input[type=text] {
+  padding: 6px 12px;
+  border: 1.2px solid #c5cbe3;
+  border-radius: 4px;
+  margin-right: 10px;
+  margin-bottom: 6px;
+}
+#new-signatory-panel input[type=file] {
+  margin-bottom: 6px;
+}
+@media (max-width: 650px) {
+  .signatory-row {flex-direction: column; align-items:flex-start;}
+  .signatory-name {margin-bottom: 4px;}
+}
+
+
+/* ===== SIGNATORY CARD ===== */
+.signatory-card {
+  background: var(--card-bg, #fff);
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  padding: 20px;
+  max-height: 320px;
+  overflow-y: auto;
+  transition: 0.3s;
+}
+
+.signatory-card::-webkit-scrollbar {
+  width: 6px;
+}
+.signatory-card::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2);
+  border-radius: 4px;
+}
+
+/* ===== HEADER ===== */
+.signatory-header {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--text-primary, #222);
+}
+
+/* ===== SIGNATORY ROW ===== */
+.signatory-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.03);
+  margin-bottom: 8px;
+  transition: background 0.2s;
+}
+
+.signatory-row:hover {
+  background: rgba(0,0,0,0.06);
+}
+
+/* Checkbox + name */
+.signatory-checkbox {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+.signatory-name {
+  flex: 1;
+  font-weight: 500;
+  color: var(--text-primary, #333);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Upload button */
+.sign-upload-label {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+.sign-upload-input {
+  display: none;
+}
+.sign-upload-btn {
+  background: #0078ff;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  transition: 0.2s;
+}
+.sign-upload-btn:hover {
+  background: #005ecc;
+}
+
+/* Signature image preview */
+.signatory-preview-img {
+  height: 38px;
+  width: auto;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 6px;
+  object-fit: contain;
+}
+
+/* Delete button */
+.delete-signatory-btn {
+  background: none;
+  border: none;
+  color: #e74c3c;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+.delete-signatory-btn:hover {
+  background: rgba(231, 76, 60, 0.1);
+}
+
+/* Add button */
+.add-signatory-btn {
+  width: 100%;
+  margin-top: 10px;
+  background: #f3f3f3;
+  border: 1px dashed #ccc;
+  border-radius: 10px;
+  padding: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.add-signatory-btn:hover {
+  background: #e7e7e7;
 }
 
 

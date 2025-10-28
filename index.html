@@ -4,19 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartNotice Pro | AI Document Generator</title>
+    <title>Notice Flow AI </title>
 
     <link rel="stylesheet" href="newstyle.css">
-
     <!-- html2pdf.js for PDF download -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
     <div class="theme-toggle">
-     <label for="theme-switch">Dark mode</label>
-     <label class="switch">
-    <input type="checkbox" id="theme-switch">
-    <span class="slider"></span>
-    </label>
-</div>
+        <label for="theme-switch">Dark mode</label>
+        <label class="switch">
+            <input type="checkbox" id="theme-switch">
+            <span class="slider"></span>
+        </label>
+    </div>
 </head>
 <body>
     <div class="app-container">
@@ -27,6 +27,9 @@
 
         <!-- INPUT FORM SECTION -->
         <section class="form-section">
+            <div class="input-group">
+                
+
             <div class="form-row">
                 <div class="input-group" style="flex: 2;">
                     <label for="title">Document Title/Subject</label>
@@ -49,32 +52,6 @@
             </div>
 
             <div class="form-row">
-                <div class="input-group" style="flex: 2;">
-                    <label for="signatories">Select Signatories (Ctrl/Cmd + Click for multiple)</label>
-                    <select id="signatories" multiple size="4" title="Hold Ctrl/Cmd to select multiple roles.">
-                        <option value="Principal">Principal (Essential for policy)</option>
-                        <option value="HOD">HOD, Computer Engineering Dept.</option>
-                        <option value="Exam_Coordinator">Exam Coordinator</option>
-                        <option value="Academic_Coordinator">Academic Coordinator</option>
-                    </select>
-                </div>
-
-                <!-- New Signatory Input Section -->
-                <div id="new-signatory-section" style="flex:1; margin-left:20px;">
-                    <h3>Add New Signatory</h3>
-                    <label for="new-signatory-name">Signatory Name</label>
-                    <input type="text" id="new-signatory-name" placeholder="Enter signatory's name">
-
-                    <label for="new-signature-upload">Upload Signature (image)</label>
-                    <input type="file" id="new-signature-upload" accept="image/*">
-
-                    <label>Or Draw Signature</label>
-                    <canvas id="signature-canvas" width="300" height="100" style="border:1px solid #000;"></canvas>
-                    <button id="clear-signature" type="button">Clear</button>
-                    
-                    <button id="add-signatory-btn" type="button" style="margin-top:10px;">Add Signatory</button>
-                </div>
-
                 <div class="input-group" style="flex: 1;">
                     <label for="ref_number">Reference Number</label>
                     <input type="text" id="ref_number" value="VPP/Trust-Office/2025-26/AUTO">
@@ -89,6 +66,35 @@
                         <!-- <span id="toggle-hint">Circular</span> -->
                     </div>
                 </div>
+
+            </div>
+            <label for="signatories">Select Signatories (Ctrl/Cmd + Click for multiple)</label>
+                <select id="signatories" multiple size="5" title="Hold Ctrl/Cmd to select multiple roles.">
+                    <option value="Principal">Principal (Essential for policy)</option>
+                    <option value="HOD">HOD, Computer Engineering Dept.</option>
+                    <option value="Exam_Coordinator">Exam Coordinator</option>
+                    <option value="Academic_Coordinator">Academic Coordinator</option>
+                </select>
+            </div>
+            
+            <!-- New Signatory Input Section as dropdown -->
+            <div class="input-group" style="margin-bottom: 30px;">
+                <details>
+                    <summary><strong>Add New Signatory</strong> (with signature)</summary>
+                    <div style="margin-top:16px;">
+                        <label for="new-signatory-name">Signatory Name</label>
+                        <input type="text" id="new-signatory-name" placeholder="Enter signatory's name">
+
+                        <label for="new-signature-upload">Upload Signature (image)</label>
+                        <input type="file" id="new-signature-upload" accept="image/*">
+
+                        <label>Or Draw Signature</label>
+                        <canvas id="signature-canvas" width="300" height="100" style="border:1px solid #000;display:block;"></canvas>
+                        <button type="button" id="clear-signature">Clear</button>
+
+                        <button type="button" id="add-signatory-btn" style="margin-top:10px;">Add Signatory</button>
+                    </div>
+                </details>
             </div>
 
             <button class="generate-btn" onclick="generateNotice()"> Generate Document ↵ </button>
@@ -101,7 +107,7 @@
                 <!-- 1. OFFICIAL LETTERHEAD -->
                 <div class="official-header resizable draggable" draggable="true" contenteditable="true" title="Click to edit/drag the header area" style="position:relative;">
                     <button class="delete-btn" title="Delete this header">×</button>
-                    <img src="headerBanner.jpg" alt="VPPCOE Official Letterhead" class="full-banner-header">
+        <img src="./headerBanner.jpg" crossorigin="anonymous" alt="VPPCOE Official Letterhead" class="full-banner-header">
                 </div>
                 <hr class="header-divider">
 
@@ -149,7 +155,10 @@
             <!-- BUTTONS -->
             <div class="btn-row">
                 <button class="download-btn" onclick="downloadPDF()">📄 Download PDF</button>
+                <!-- <button class="download-btn" onclick="downloadDOCX()">📝 Download DOCX</button> -->
+
                 <button class="edit-btn" onclick="editNotice()">✏️ Edit Input</button>
+                
             </div>
         </section>
 
@@ -161,5 +170,4 @@
     <script src="script.js"></script>
 </body>
 </html>
-
 <!-- PROPERLY FORMATTED, COMMENTED AND STRUCTURED BY THE CREATORS OF EDUSYNC -->
